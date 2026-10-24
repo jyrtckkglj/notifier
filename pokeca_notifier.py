@@ -431,6 +431,7 @@ def main() -> int:
     ap.add_argument("--config", default=str(BASE_DIR / "config.json"))
     ap.add_argument("--no-notify", action="store_true", help="Discord に送らない")
     ap.add_argument("--dump-html", action="store_true", help="取得したページを debug/ に保存する(調整用)")
+    ap.add_argument("--test-notify", action="store_true", help="最新の1件をテストとして Discord に送るだけ")
     ap.add_argument("--offline-dir", help="ネットに接続せず、このフォルダの保存済みページを使う(テスト用)")
     args = ap.parse_args()
 
@@ -438,6 +439,14 @@ def main() -> int:
     state_path = BASE_DIR / config["state_file"]
     state = load_state(state_path)
     first_run = not state["items"] and not state["runs"]
+    if args.test_notify:
+        latest = sorted(state["items"].values(), key=lambda x: x["first_seen"], reverse=True)[:1]
+        if not config["discord_webhook_url"]:
+            print("DISCORD_WEBHOOK_URL が設定されていません", file=sys.stderr)
+            return 1
+        post_discord(config["discord_webhook_url"], {"content": "【テスト】ポケカ通知ツールの通知テストです。毎朝8時に新着をお知らせします。"})
+        notify(config["discord_webhook_url"], latest, [], False)
+        return 0
     fetcher = Fetcher(config["request_interval_sec"],
                       Path(args.offline_dir) if args.offline_dir else None,
                       BASE_DIR / "debug" if args.dump_html else None)
