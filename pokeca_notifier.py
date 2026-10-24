@@ -179,7 +179,7 @@ def find_release(text: str) -> str:
 
 def name_key(name: str) -> str:
     """商品名の表記ゆれをそろえる(「」・空白・パック種別を除く)。"""
-    name = re.sub(r"拡張パック|強化拡張パック|ハイクラスパック|ポケモンカードゲーム|MEGA\s|[「」『』\s・]", "", name)
+    name = re.sub(r"拡張パック|強化拡張パック|ハイクラスパック|ポケモンカードゲーム|MEGA\s|[「」『』()（）\s・]", "", name)
     return name.lower()
 
 
@@ -280,6 +280,7 @@ def extract_from_article(article: dict, page_html: str, source_name: str) -> lis
             "details": info["lines"][:8],
             "link": info["link"],
             "release": release,
+        "seen": f"{item['first_seen'][:10].replace('-', '/')}(このツールで初めて確認した日)" if invite and not start and item.get("first_seen") else "",
             "source_url": article["url"],
             "source_name": source_name,
         })
@@ -418,8 +419,6 @@ def summarize(item: dict, now: dt.datetime) -> dict:
     release = item.get("release", "")
     if invite and status == "受付中":
         deadline = "(締切なし・予告なく終了" + (f"・発売日 {release}" if release else "") + ")"
-        if not start:
-            start = f"{item['first_seen'][5:10].replace('-', '/')}ごろ(このツールで確認した日)" if item.get("first_seen") else ""
         period = f"{start} 〜 締切なし(予告なく終了することがあります)" if start else "締切なし(予告なく終了することがあります)"
     else:
         deadline = f"({end}まで)" if status == "受付中" and end else f"({start}から)" if status == "受付前" and start else ""
@@ -464,6 +463,7 @@ def notify(webhook_url: str, new_items: list[dict], errors: list[str], first_run
                     ("応募方法", info["how"], False),
                     ("当選発表", info["result"], False),
                     ("購入期間", info["purchase"], False),
+                    ("掲載確認", info["seen"], False),
                     ("発売日", info["release"], False),
                     ("お届け", info["delivery"], False),
                     ("購入制限", info["limit"], False),
