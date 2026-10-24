@@ -92,6 +92,7 @@ class BlockParser(HTMLParser):
         self._tables: list[dict] = []
         self._cell: dict | None = None
         self._skip = 0
+        self.texts: list[str] = []
 
     def handle_starttag(self, tag, attrs):
         if tag in ("script", "style", "noscript"):
@@ -135,6 +136,7 @@ class BlockParser(HTMLParser):
     def handle_data(self, data):
         if self._skip:
             return
+        self.texts.append(data)
         if self._cell is not None:
             self._cell["text"] += data
         elif self._heading is not None:
@@ -165,6 +167,20 @@ def product_name(article_title: str) -> str:
     name = re.sub(r"【[^】]*】", "", article_title)
     name = re.split(r"の(?:収録|当たり|抽選|予約|最新|発売)|抽選・予約|予約・抽選|\s*[|｜]", name)[0]
     return clean(name) or clean(article_title)
+
+
+RELEASE_RE = re.compile(r"発売日[^0-9]{0,12}((?:20\d{2}年)?\d{1,2}月\d{1,2}日(?:\s*[(（][^)）]*[)）])?)")
+
+
+def find_release(text: str) -> str:
+    m = RELEASE_RE.search(text)
+    return clean(m.group(1)) if m else ""
+
+
+def name_key(name: str) -> str:
+    """商品名の表記ゆれをそろえる(「」・空白・パック種別を除く)。"""
+    name = re.sub(r"拡張パック|強化拡張パック|ハイクラスパック|ポケモンカードゲーム|MEGA\s|[「」『』\s・]", "", name)
+    return name.lower()
 
 
 def first_date(text: str) -> str:
@@ -213,6 +229,7 @@ def extract_from_article(article: dict, page_html: str, source_name: str) -> lis
     parser = BlockParser()
     parser.feed(page_html)
     product = product_name(article["title"])
+    release = find_release(" ".join(parser.texts))
     detail: dict[str, dict] = {}
     summary: dict[str, dict] = {}
     heading_shop = None
@@ -262,6 +279,7 @@ def extract_from_article(article: dict, page_html: str, source_name: str) -> lis
             "kind": guess_kind(info["text"]),
             "details": info["lines"][:8],
             "link": info["link"],
+            "release": release,
             "source_url": article["url"],
             "source_name": source_name,
         })
@@ -273,6 +291,14 @@ def extract_amazon_list(page: dict, page_html: str) -> list[dict]:
     parser = BlockParser()
     parser.feed(page_html)
     items = []
+    history: dict[str, dict] = {}  # 実績表: 商品名 → 発売日・受付開始
+    for block in parser.blocks:
+        if block["type"] != "table":
+            continue
+        for row in block["rows"]:
+            texts = [c["text"] for c in row]
+            if len(texts) >= 3 and DATE_RE.search(texts[1]) and DATE_RE.search(texts[2]):
+                history[name_key(texts[0])] = {"release": texts[1], "start": texts[2]}
     for block in parser.blocks:
         if block["type"] != "table":
             continue
@@ -282,13 +308,16 @@ def extract_amazon_list(page: dict, page_html: str) -> list[dict]:
             name = row[0]["text"] if row else ""
             if not link or not name:
                 continue
+            past = next((v for k, v in history.items() if k and (k in name_key(name) or name_key(name) in k)), {})
             items.append({
                 "key": f"amazon|{link.split('?')[0]}",
                 "shop": "Amazon",
                 "product": name,
                 "kind": "招待リクエスト",
-                "details": ["招待リクエスト受付中(まとめサイト掲載)"],
+                "details": ["招待リクエスト受付中(まとめサイト掲載)"]
+                           + ([f"受付開始: {past['start']}"] if past.get("start") else []),
                 "link": link,
+                "release": past.get("release", ""),
                 "source_url": page["url"],
                 "source_name": page["name"],
             })
@@ -375,7 +404,8 @@ def summarize(item: dict, now: dt.datetime) -> dict:
         period = " / ".join(item["details"])  # まとめ表の行(列名なし)はそのまま出す
     start_dt = to_datetime(start or period, now, False)
     end_dt = to_datetime(end or (period.split("〜")[-1] if "〜" in period else ""), now, True)
-    if item["kind"] == "招待リクエスト" and not (start_dt or end_dt):
+    invite = item["kind"] == "招待リクエスト" and item["shop"] == "Amazon"
+    if invite and not end:
         status = "受付中"
     elif end_dt and now > end_dt:
         status = "受付終了"
@@ -385,14 +415,22 @@ def summarize(item: dict, now: dt.datetime) -> dict:
         status = "受付中"
     else:
         status = "詳細を確認"
-    deadline = f"({end}まで)" if status == "受付中" and end else f"({start}から)" if status == "受付前" and start else ""
+    release = item.get("release", "")
+    if invite and status == "受付中":
+        deadline = "(締切なし・予告なく終了" + (f"・発売日 {release}" if release else "") + ")"
+        if not start:
+            start = f"{item['first_seen'][5:10].replace('-', '/')}ごろ(このツールで確認した日)" if item.get("first_seen") else ""
+        period = f"{start} 〜 締切なし(予告なく終了することがあります)" if start else "締切なし(予告なく終了することがあります)"
+    else:
+        deadline = f"({end}まで)" if status == "受付中" and end else f"({start}から)" if status == "受付前" and start else ""
     kind = item["kind"] if item["kind"] != "販売" else "販売"
     return {
         "status": status,
         "headline": f"{SHOP_LABEL[item['shop']]}で{kind}{status}{deadline}",
         "period": period,
         "result": find_value(d, "結果発表", "当選発表"),
-        "purchase": find_value(d, "購入期間", "支払"),
+        "purchase": find_value(d, "購入期間", "支払") or ("当選メールが届いてから48〜72時間ほど(メールに記載)" if invite else ""),
+        "release": release,
         "delivery": find_value(d, "お届け", "発送"),
         "limit": find_value(d, "購入制限", "制限").lstrip("・"),
         "apply_url": item["link"] or DEFAULT_APPLY_URL[item["shop"]] or item["source_url"],
@@ -426,6 +464,7 @@ def notify(webhook_url: str, new_items: list[dict], errors: list[str], first_run
                     ("応募方法", info["how"], False),
                     ("当選発表", info["result"], False),
                     ("購入期間", info["purchase"], False),
+                    ("発売日", info["release"], False),
                     ("お届け", info["delivery"], False),
                     ("購入制限", info["limit"], False),
                 ) if value]
@@ -588,11 +627,19 @@ def main() -> int:
         except Exception as ex:
             errors.append(f"{page['name']}: {type(ex).__name__} {ex}")
 
+    # 発売日が分からない商品は、同じ商品名の記事から補う
+    releases = {name_key(i["product"]): i["release"] for i in found if i.get("release")}
+    releases.update({name_key(a.get("product", "")): a["release"] for a in state["articles"].values() if a.get("release")})
+    for item in found:
+        if not item.get("release"):
+            key = name_key(item["product"])
+            item["release"] = next((r for k, r in releases.items() if k and (k in key or key in k)), "")
+
     new_items = []
     for item in found:
         old = state["items"].get(item["key"])
         if old:
-            old.update({k: item[k] for k in ("details", "link", "kind", "product")})  # 最新の内容に更新
+            old.update({k: item[k] for k in ("details", "link", "kind", "product", "release")})  # 最新の内容に更新
             continue
         item["first_seen"] = started
         state["items"][item["key"]] = item
