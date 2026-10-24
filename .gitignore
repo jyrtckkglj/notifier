@@ -1,0 +1,4 @@
+config.json
+debug/
+run.log
+__pycache__/
