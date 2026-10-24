@@ -18,7 +18,8 @@
       "link": "",
       "source_url": "https://premium.gamepedia.jp/pokeca/archives/25938",
       "source_name": "攻略大百科",
-      "first_seen": "2026-10-24T18:12:04+09:00"
+      "first_seen": "2026-10-24T18:12:04+09:00",
+      "release": "2026年11月27日(金)"
     },
     "https://premium.gamepedia.jp/pokeca/archives/25871|ポケモンセンターオンライン|10/16": {
       "key": "https://premium.gamepedia.jp/pokeca/archives/25871|ポケモンセンターオンライン|10/16",
@@ -37,7 +38,8 @@
       "link": "",
       "source_url": "https://premium.gamepedia.jp/pokeca/archives/25871",
       "source_name": "攻略大百科",
-      "first_seen": "2026-10-24T18:12:04+09:00"
+      "first_seen": "2026-10-24T18:12:04+09:00",
+      "release": "2026年11月13日(金)"
     },
     "amazon|https://www.amazon.co.jp/dp/B0GXCRBL5J": {
       "key": "amazon|https://www.amazon.co.jp/dp/B0GXCRBL5J",
@@ -45,12 +47,14 @@
       "product": "拡張パック 「30th CELEBRATION」",
       "kind": "招待リクエスト",
       "details": [
-        "招待リクエスト受付中(まとめサイト掲載)"
+        "招待リクエスト受付中(まとめサイト掲載)",
+        "受付開始: 2026年6月2日 （106日前）"
       ],
       "link": "https://www.amazon.co.jp/dp/B0GXCRBL5J",
       "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
       "source_name": "ポケざんまい",
-      "first_seen": "2026-10-24T18:12:04+09:00"
+      "first_seen": "2026-10-24T18:12:04+09:00",
+      "release": "2026年9月16日"
     },
     "amazon|https://www.amazon.co.jp/dp/B0GXCM4BCZ": {
       "key": "amazon|https://www.amazon.co.jp/dp/B0GXCM4BCZ",
@@ -63,7 +67,8 @@
       "link": "https://www.amazon.co.jp/dp/B0GXCM4BCZ",
       "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
       "source_name": "ポケざんまい",
-      "first_seen": "2026-10-24T18:12:04+09:00"
+      "first_seen": "2026-10-24T18:12:04+09:00",
+      "release": ""
     },
     "amazon|https://www.amazon.co.jp/dp/B0FSJXSPPX": {
       "key": "amazon|https://www.amazon.co.jp/dp/B0FSJXSPPX",
@@ -71,12 +76,14 @@
       "product": "拡張パック 「ムニキスゼロ」",
       "kind": "招待リクエスト",
       "details": [
-        "招待リクエスト受付中(まとめサイト掲載)"
+        "招待リクエスト受付中(まとめサイト掲載)",
+        "受付開始: 2025年12月22日 （32日前）"
       ],
       "link": "https://www.amazon.co.jp/dp/B0FSJXSPPX",
       "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
       "source_name": "ポケざんまい",
-      "first_seen": "2026-10-24T18:12:04+09:00"
+      "first_seen": "2026-10-24T18:12:04+09:00",
+      "release": "2026年1月23日"
     },
     "amazon|https://www.amazon.co.jp/dp/B0FLCWJ1VK": {
       "key": "amazon|https://www.amazon.co.jp/dp/B0FLCWJ1VK",
@@ -84,12 +91,14 @@
       "product": "ハイクラスパック 「MEGAドリームex」",
       "kind": "招待リクエスト",
       "details": [
-        "招待リクエスト受付中(まとめサイト掲載)"
+        "招待リクエスト受付中(まとめサイト掲載)",
+        "受付開始: 2025年11月10日 （18日前）"
       ],
       "link": "https://www.amazon.co.jp/dp/B0FLCWJ1VK",
       "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
       "source_name": "ポケざんまい",
-      "first_seen": "2026-10-24T18:12:04+09:00"
+      "first_seen": "2026-10-24T18:12:04+09:00",
+      "release": "2025年11月28日"
     },
     "amazon|https://www.amazon.co.jp/dp/B0F9KJGGZ5": {
       "key": "amazon|https://www.amazon.co.jp/dp/B0F9KJGGZ5",
@@ -102,7 +111,8 @@
       "link": "https://www.amazon.co.jp/dp/B0F9KJGGZ5",
       "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
       "source_name": "ポケざんまい",
-      "first_seen": "2026-10-24T18:12:04+09:00"
+      "first_seen": "2026-10-24T18:12:04+09:00",
+      "release": ""
     },
     "amazon|https://www.amazon.co.jp/dp/B0F18J2CJF": {
       "key": "amazon|https://www.amazon.co.jp/dp/B0F18J2CJF",
@@ -115,7 +125,8 @@
       "link": "https://www.amazon.co.jp/dp/B0F18J2CJF",
       "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
       "source_name": "ポケざんまい",
-      "first_seen": "2026-10-24T18:12:04+09:00"
+      "first_seen": "2026-10-24T18:12:04+09:00",
+      "release": ""
     },
     "amazon|https://www.amazon.co.jp/dp/B0F189YH8W": {
       "key": "amazon|https://www.amazon.co.jp/dp/B0F189YH8W",
@@ -128,7 +139,8 @@
       "link": "https://www.amazon.co.jp/dp/B0F189YH8W",
       "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
       "source_name": "ポケざんまい",
-      "first_seen": "2026-10-24T18:12:04+09:00"
+      "first_seen": "2026-10-24T18:12:04+09:00",
+      "release": ""
     }
   },
   "articles": {
@@ -178,6 +190,12 @@
     },
     {
       "at": "2026-10-24T18:13:46+09:00",
+      "found": 9,
+      "new": 0,
+      "errors": []
+    },
+    {
+      "at": "2026-10-24T19:10:02+09:00",
       "found": 9,
       "new": 0,
       "errors": []
