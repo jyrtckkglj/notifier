@@ -176,8 +176,10 @@ def pick_link(links: list[str], base: str, shop: str) -> str:
     domains = ("pokemoncenter-online.com",) if shop == "ポケモンセンターオンライン" else ("amazon.", "amzn.")
     for href in links:
         url = urllib.parse.urljoin(base, href)
-        if any(d in urllib.parse.urlparse(url).netloc for d in domains):
-            return url
+        parts = urllib.parse.urlparse(url)
+        if any(d in parts.netloc for d in domains):
+            # まとめサイトのアフィリエイト用パラメータなどを外す
+            return f"{parts.scheme}://{parts.netloc}{parts.path}" if "amazon." in parts.netloc else url
     return ""
 
 
@@ -456,8 +458,9 @@ def main() -> int:
 
     # 2) 最近の記事を読み直して ポケセン/Amazon の情報を抜き出す(記事は後から追記されるため)
     cutoff = now - dt.timedelta(days=config["recheck_days"])
+    page_urls = {page["url"] for page in config["pages"]}  # 一覧ページは 3) で別に読む
     for url, article in list(state["articles"].items()):
-        if dt.datetime.fromisoformat(article["first_seen"]) < cutoff:
+        if url in page_urls or dt.datetime.fromisoformat(article["first_seen"]) < cutoff:
             continue
         try:
             items = extract_from_article(article, fetcher.get(url), article["source_name"])

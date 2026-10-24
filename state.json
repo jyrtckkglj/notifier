@@ -39,26 +39,6 @@
       "source_name": "攻略大百科",
       "first_seen": "2026-10-24T18:12:04+09:00"
     },
-    "https://www.pokeca-zanmai.jp/amazon-lottery/|Amazon|": {
-      "key": "https://www.pokeca-zanmai.jp/amazon-lottery/|Amazon|",
-      "shop": "Amazon",
-      "product": "商品ページ",
-      "kind": "販売",
-      "details": [
-        "商品名: 商品ページ",
-        "拡張パック 「30th CELEBRATION」: 商品ページを見る",
-        "プレミアムデッキセット 「エーフィ・ブラッキー」: 商品ページを見る",
-        "拡張パック 「ムニキスゼロ」: 商品ページを見る",
-        "ハイクラスパック 「MEGAドリームex」: 商品ページを見る",
-        "拡張パック 「インフェルノX」: 商品ページを見る",
-        "拡張パック 「メガブレイブ」: 商品ページを見る",
-        "拡張パック 「メガシンフォニア」: 商品ページを見る"
-      ],
-      "link": "https://www.amazon.co.jp/dp/B0GXCRBL5J?tag=pokekadagaya-22&linkCode=ogi&th=1&psc=1",
-      "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
-      "source_name": "ポケざんまい",
-      "first_seen": "2026-10-24T18:12:04+09:00"
-    },
     "amazon|https://www.amazon.co.jp/dp/B0GXCRBL5J": {
       "key": "amazon|https://www.amazon.co.jp/dp/B0GXCRBL5J",
       "shop": "Amazon",
@@ -67,7 +47,7 @@
       "details": [
         "招待リクエスト受付中(まとめサイト掲載)"
       ],
-      "link": "https://www.amazon.co.jp/dp/B0GXCRBL5J?tag=pokekadagaya-22&linkCode=ogi&th=1&psc=1",
+      "link": "https://www.amazon.co.jp/dp/B0GXCRBL5J",
       "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
       "source_name": "ポケざんまい",
       "first_seen": "2026-10-24T18:12:04+09:00"
@@ -80,7 +60,7 @@
       "details": [
         "招待リクエスト受付中(まとめサイト掲載)"
       ],
-      "link": "https://www.amazon.co.jp/dp/B0GXCM4BCZ?tag=pokekadagaya-22&linkCode=osi&th=1&psc=1",
+      "link": "https://www.amazon.co.jp/dp/B0GXCM4BCZ",
       "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
       "source_name": "ポケざんまい",
       "first_seen": "2026-10-24T18:12:04+09:00"
@@ -93,7 +73,7 @@
       "details": [
         "招待リクエスト受付中(まとめサイト掲載)"
       ],
-      "link": "https://www.amazon.co.jp/dp/B0FSJXSPPX?tag=pokekadagaya-22&linkCode=ogi&th=1&psc=1",
+      "link": "https://www.amazon.co.jp/dp/B0FSJXSPPX",
       "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
       "source_name": "ポケざんまい",
       "first_seen": "2026-10-24T18:12:04+09:00"
@@ -106,7 +86,7 @@
       "details": [
         "招待リクエスト受付中(まとめサイト掲載)"
       ],
-      "link": "https://www.amazon.co.jp/dp/B0FLCWJ1VK?tag=pokekadagaya-22&linkCode=ogi&th=1&psc=1",
+      "link": "https://www.amazon.co.jp/dp/B0FLCWJ1VK",
       "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
       "source_name": "ポケざんまい",
       "first_seen": "2026-10-24T18:12:04+09:00"
@@ -119,7 +99,7 @@
       "details": [
         "招待リクエスト受付中(まとめサイト掲載)"
       ],
-      "link": "https://www.amazon.co.jp/dp/B0F9KJGGZ5?tag=pokekadagaya-22&linkCode=ogi&th=1&psc=1",
+      "link": "https://www.amazon.co.jp/dp/B0F9KJGGZ5",
       "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
       "source_name": "ポケざんまい",
       "first_seen": "2026-10-24T18:12:04+09:00"
@@ -132,7 +112,7 @@
       "details": [
         "招待リクエスト受付中(まとめサイト掲載)"
       ],
-      "link": "https://www.amazon.co.jp/dp/B0F18J2CJF?tag=pokekadagaya-22&linkCode=ogi&th=1&psc=1",
+      "link": "https://www.amazon.co.jp/dp/B0F18J2CJF",
       "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
       "source_name": "ポケざんまい",
       "first_seen": "2026-10-24T18:12:04+09:00"
@@ -145,7 +125,7 @@
       "details": [
         "招待リクエスト受付中(まとめサイト掲載)"
       ],
-      "link": "https://www.amazon.co.jp/dp/B0F189YH8W?tag=pokekadagaya-22&linkCode=ogi&th=1&psc=1",
+      "link": "https://www.amazon.co.jp/dp/B0F189YH8W",
       "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
       "source_name": "ポケざんまい",
       "first_seen": "2026-10-24T18:12:04+09:00"
