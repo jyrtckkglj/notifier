@@ -323,6 +323,86 @@ def post_discord(webhook_url: str, payload: dict) -> None:
             raise
 
 
+SHOP_LABEL = {"ポケモンセンターオンライン": "ポケモンセンターオンライン", "Amazon": "Amazon"}
+SHOP_ICON = {"ポケモンセンターオンライン": "🔴", "Amazon": "🟠"}
+DEFAULT_APPLY_URL = {
+    "ポケモンセンターオンライン": "https://www.pokemoncenter-online.com/lottery/apply.html",
+    "Amazon": "",
+}
+DATETIME_RE = re.compile(r"(\d{1,2})/(\d{1,2})(?:\([^)]*\))?\s*(\d{1,2}):(\d{2})?")
+
+
+def details_map(item: dict) -> dict[str, str]:
+    result = {}
+    for line in item["details"]:
+        if ": " in line:
+            key, value = line.split(": ", 1)
+            result.setdefault(key, value)
+    return result
+
+
+def find_value(d: dict[str, str], *words: str) -> str:
+    for key, value in d.items():
+        if any(w in key for w in words):
+            return value
+    return ""
+
+
+def to_datetime(text: str, now: dt.datetime, end_of_day: bool) -> dt.datetime | None:
+    m = DATETIME_RE.search(text)
+    if m:
+        month, day, hour, minute = int(m.group(1)), int(m.group(2)), int(m.group(3)), int(m.group(4) or 0)
+    else:
+        m = DATE_RE.search(text)
+        if not m:
+            return None
+        month, day = int(m.group(2)), int(m.group(3))
+        hour, minute = (23, 59) if end_of_day else (0, 0)
+    year = now.year + (1 if month < now.month - 6 else 0) - (1 if month > now.month + 6 else 0)
+    try:
+        return dt.datetime(year, month, day, hour, minute, tzinfo=JST)
+    except ValueError:
+        return None
+
+
+def summarize(item: dict, now: dt.datetime) -> dict:
+    """通知・一覧で使う「いつ・何をすればいいか」をまとめる。"""
+    d = details_map(item)
+    start = find_value(d, "抽選開始", "予約開始", "受付開始", "応募開始")
+    end = find_value(d, "抽選終了", "予約終了", "受付終了", "応募終了")
+    period = f"{start} 〜 {end}" if start or end else find_value(d, "抽選期間", "予約期間", "受付期間", "応募期間")
+    if not period and item["details"] and ": " not in item["details"][0] and "まとめサイト掲載" not in item["details"][0]:
+        period = " / ".join(item["details"])  # まとめ表の行(列名なし)はそのまま出す
+    start_dt = to_datetime(start or period, now, False)
+    end_dt = to_datetime(end or (period.split("〜")[-1] if "〜" in period else ""), now, True)
+    if item["kind"] == "招待リクエスト" and not (start_dt or end_dt):
+        status = "受付中"
+    elif end_dt and now > end_dt:
+        status = "受付終了"
+    elif start_dt and now < start_dt:
+        status = "受付前"
+    elif start_dt or end_dt:
+        status = "受付中"
+    else:
+        status = "詳細を確認"
+    deadline = f"({end}まで)" if status == "受付中" and end else f"({start}から)" if status == "受付前" and start else ""
+    kind = item["kind"] if item["kind"] != "販売" else "販売"
+    return {
+        "status": status,
+        "headline": f"{SHOP_LABEL[item['shop']]}で{kind}{status}{deadline}",
+        "period": period,
+        "result": find_value(d, "結果発表", "当選発表"),
+        "purchase": find_value(d, "購入期間", "支払"),
+        "delivery": find_value(d, "お届け", "発送"),
+        "limit": find_value(d, "購入制限", "制限").lstrip("・"),
+        "apply_url": item["link"] or DEFAULT_APPLY_URL[item["shop"]] or item["source_url"],
+        "how": ("Amazonの商品ページで「招待をリクエスト」を押す(当選するとメールで購入案内)"
+                if item["kind"] == "招待リクエスト" else
+                "ポケモンセンターオンラインの抽選ページから応募(ログインが必要)"
+                if item["shop"] == "ポケモンセンターオンライン" and item["kind"] == "抽選" else ""),
+    }
+
+
 def notify(webhook_url: str, new_items: list[dict], errors: list[str], first_run: bool) -> None:
     if not webhook_url:
         print("Discord Webhook URL が未設定のため通知をスキップしました")
@@ -330,21 +410,37 @@ def notify(webhook_url: str, new_items: list[dict], errors: list[str], first_run
     if first_run:
         post_discord(webhook_url, {"content": f"ポケカ通知ツールを開始しました。現在の {len(new_items)} 件を登録しました。次回から新着だけ通知します。"})
     else:
+        now = now_jst()
         for i in range(0, len(new_items), 10):
-            embeds = []
-            for item in new_items[i:i + 10]:
-                desc = "\n".join(item["details"])[:1500]
-                desc += f"\n[まとめ記事]({item['source_url']})"
+            chunk = new_items[i:i + 10]
+            embeds, lines = [], []
+            for item in chunk:
+                info = summarize(item, now)
+                icon = SHOP_ICON[item["shop"]]
+                lines.append(f"{icon} **{item['product']}** … {info['headline']}")
+                fields = [{"name": name, "value": value[:1024], "inline": inline} for name, value, inline in (
+                    ("ショップ", SHOP_LABEL[item["shop"]], True),
+                    ("種類", item["kind"], True),
+                    ("状況", info["status"], True),
+                    ("応募期間", info["period"], False),
+                    ("応募方法", info["how"], False),
+                    ("当選発表", info["result"], False),
+                    ("購入期間", info["purchase"], False),
+                    ("お届け", info["delivery"], False),
+                    ("購入制限", info["limit"], False),
+                ) if value]
+                fields.append({"name": "リンク", "value": f"[応募・商品ページ]({info['apply_url']}) ・ [まとめ記事]({item['source_url']})", "inline": False})
                 embeds.append({
-                    "title": f"【{item['shop']}・{item['kind']}】{item['product']}"[:256],
-                    "url": item["link"] or item["source_url"],
-                    "description": desc,
+                    "author": {"name": f"{icon} {SHOP_LABEL[item['shop']]}"},
+                    "title": f"{item['product']}"[:256],
+                    "url": info["apply_url"],
+                    "description": f"**{info['headline']}**",
+                    "fields": fields,
                     "color": 0xE3350D if item["shop"] != "Amazon" else 0xFF9900,
                     "footer": {"text": f"出典: {item['source_name']}"},
                 })
-            payload = {"embeds": embeds}
-            if i == 0:
-                payload["content"] = "ポケカの新着情報があります"
+            header = "📢 ポケカの新着情報" if i == 0 else ""
+            payload = {"content": "\n".join(filter(None, [header, *lines]))[:2000], "embeds": embeds}
             post_discord(webhook_url, payload)
     if errors:
         post_discord(webhook_url, {"content": "取得に失敗したページがあります:\n" + "\n".join(errors)[:1800]})
@@ -355,13 +451,16 @@ def render_html(state: dict, path: Path) -> None:
     items = sorted(state["items"].values(), key=lambda x: x["first_seen"], reverse=True)
     last_run = state["runs"][-1] if state["runs"] else {}
     rows = []
+    now = now_jst()
     for item in items:
-        target = item["link"] or item["source_url"]
+        info = summarize(item, now)
+        target = info["apply_url"]
         details = "".join(f"<li>{e(d)}</li>" for d in item["details"])
         rows.append(
             f'<li class="item {"amazon" if item["shop"] == "Amazon" else "pco"}">'
             f'<span class="tag">{e(item["shop"])}</span><span class="kind">{e(item["kind"])}</span>'
             f'<a class="title" href="{e(target)}" target="_blank" rel="noopener">{e(item["product"])}</a>'
+            f'<div class="headline">{e(info["headline"])}</div>'
             f'<ul class="details">{details}</ul>'
             f'<div class="meta">初回確認 {e(item["first_seen"][:10])} ・ 出典 '
             f'<a href="{e(item["source_url"])}" target="_blank" rel="noopener">{e(item["source_name"])}</a></div></li>'
@@ -385,6 +484,7 @@ ul {{ list-style:none; padding:0; margin:0; }}
 .tag {{ display:inline-block; font-size:.75rem; color:#fff; border-radius:4px; padding:1px 6px; margin-right:6px; }}
 .pco .tag {{ background:var(--pco); }} .amazon .tag {{ background:var(--amazon); }}
 .kind {{ font-size:.75rem; color:var(--muted); }}
+.headline {{ font-weight:600; font-size:.9rem; margin-top:4px; }}
 .details {{ font-size:.85rem; margin:6px 0 0; }} .details li {{ padding:1px 0; }}
 .meta {{ color:var(--muted); font-size:.8rem; margin-top:6px; }} .meta a {{ color:inherit; }}
 .errors {{ color:var(--pco); font-size:.85rem; margin-bottom:12px; }}
@@ -440,7 +540,8 @@ def main() -> int:
     state = load_state(state_path)
     first_run = not state["items"] and not state["runs"]
     if args.test_notify:
-        latest = sorted(state["items"].values(), key=lambda x: x["first_seen"], reverse=True)[:1]
+        newest = sorted(state["items"].values(), key=lambda x: x["first_seen"], reverse=True)
+        latest = [next(x for x in newest if x["shop"] == shop) for shop in SHOPS if any(x["shop"] == shop for x in newest)]
         if not config["discord_webhook_url"]:
             print("DISCORD_WEBHOOK_URL が設定されていません", file=sys.stderr)
             return 1
