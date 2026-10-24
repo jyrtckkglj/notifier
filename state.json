@@ -1,0 +1,200 @@
+{
+  "items": {
+    "https://premium.gamepedia.jp/pokeca/archives/25938|ポケモンセンターオンライン|10/23": {
+      "key": "https://premium.gamepedia.jp/pokeca/archives/25938|ポケモンセンターオンライン|10/23",
+      "shop": "ポケモンセンターオンライン",
+      "product": "ハドウシーカー",
+      "kind": "抽選",
+      "details": [
+        "対象商品: ハドウシーカー",
+        "販売種別: 抽選",
+        "抽選開始日時: 10/23(金) 16:00",
+        "抽選終了日時: 10/26(月) 16:59",
+        "抽選結果発表: 10/30(金)15:00以降【当落メール】",
+        "購入期間: 10/30(金)15:00~11/2(月)16:59",
+        "お届け日: 11/25(水)~11/28(土)までに発送予定",
+        "購入制限等: ・1人1BOXまで"
+      ],
+      "link": "",
+      "source_url": "https://premium.gamepedia.jp/pokeca/archives/25938",
+      "source_name": "攻略大百科",
+      "first_seen": "2026-10-24T18:12:04+09:00"
+    },
+    "https://premium.gamepedia.jp/pokeca/archives/25871|ポケモンセンターオンライン|10/16": {
+      "key": "https://premium.gamepedia.jp/pokeca/archives/25871|ポケモンセンターオンライン|10/16",
+      "shop": "ポケモンセンターオンライン",
+      "product": "スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+      "kind": "抽選",
+      "details": [
+        "対象商品: スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+        "販売種別: 抽選",
+        "抽選開始日時: 10/16(金) 16:00",
+        "抽選終了日時: 10/19(月) 16:59",
+        "抽選結果発表: 10/23(金)15:00以降【当落メール】",
+        "購入期間: 10/23(金)15:00~10/26(月)16:59",
+        "購入制限等: ・1人1点まで"
+      ],
+      "link": "",
+      "source_url": "https://premium.gamepedia.jp/pokeca/archives/25871",
+      "source_name": "攻略大百科",
+      "first_seen": "2026-10-24T18:12:04+09:00"
+    },
+    "https://www.pokeca-zanmai.jp/amazon-lottery/|Amazon|": {
+      "key": "https://www.pokeca-zanmai.jp/amazon-lottery/|Amazon|",
+      "shop": "Amazon",
+      "product": "商品ページ",
+      "kind": "販売",
+      "details": [
+        "商品名: 商品ページ",
+        "拡張パック 「30th CELEBRATION」: 商品ページを見る",
+        "プレミアムデッキセット 「エーフィ・ブラッキー」: 商品ページを見る",
+        "拡張パック 「ムニキスゼロ」: 商品ページを見る",
+        "ハイクラスパック 「MEGAドリームex」: 商品ページを見る",
+        "拡張パック 「インフェルノX」: 商品ページを見る",
+        "拡張パック 「メガブレイブ」: 商品ページを見る",
+        "拡張パック 「メガシンフォニア」: 商品ページを見る"
+      ],
+      "link": "https://www.amazon.co.jp/dp/B0GXCRBL5J?tag=pokekadagaya-22&linkCode=ogi&th=1&psc=1",
+      "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
+      "source_name": "ポケざんまい",
+      "first_seen": "2026-10-24T18:12:04+09:00"
+    },
+    "amazon|https://www.amazon.co.jp/dp/B0GXCRBL5J": {
+      "key": "amazon|https://www.amazon.co.jp/dp/B0GXCRBL5J",
+      "shop": "Amazon",
+      "product": "拡張パック 「30th CELEBRATION」",
+      "kind": "招待リクエスト",
+      "details": [
+        "招待リクエスト受付中(まとめサイト掲載)"
+      ],
+      "link": "https://www.amazon.co.jp/dp/B0GXCRBL5J?tag=pokekadagaya-22&linkCode=ogi&th=1&psc=1",
+      "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
+      "source_name": "ポケざんまい",
+      "first_seen": "2026-10-24T18:12:04+09:00"
+    },
+    "amazon|https://www.amazon.co.jp/dp/B0GXCM4BCZ": {
+      "key": "amazon|https://www.amazon.co.jp/dp/B0GXCM4BCZ",
+      "shop": "Amazon",
+      "product": "プレミアムデッキセット 「エーフィ・ブラッキー」",
+      "kind": "招待リクエスト",
+      "details": [
+        "招待リクエスト受付中(まとめサイト掲載)"
+      ],
+      "link": "https://www.amazon.co.jp/dp/B0GXCM4BCZ?tag=pokekadagaya-22&linkCode=osi&th=1&psc=1",
+      "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
+      "source_name": "ポケざんまい",
+      "first_seen": "2026-10-24T18:12:04+09:00"
+    },
+    "amazon|https://www.amazon.co.jp/dp/B0FSJXSPPX": {
+      "key": "amazon|https://www.amazon.co.jp/dp/B0FSJXSPPX",
+      "shop": "Amazon",
+      "product": "拡張パック 「ムニキスゼロ」",
+      "kind": "招待リクエスト",
+      "details": [
+        "招待リクエスト受付中(まとめサイト掲載)"
+      ],
+      "link": "https://www.amazon.co.jp/dp/B0FSJXSPPX?tag=pokekadagaya-22&linkCode=ogi&th=1&psc=1",
+      "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
+      "source_name": "ポケざんまい",
+      "first_seen": "2026-10-24T18:12:04+09:00"
+    },
+    "amazon|https://www.amazon.co.jp/dp/B0FLCWJ1VK": {
+      "key": "amazon|https://www.amazon.co.jp/dp/B0FLCWJ1VK",
+      "shop": "Amazon",
+      "product": "ハイクラスパック 「MEGAドリームex」",
+      "kind": "招待リクエスト",
+      "details": [
+        "招待リクエスト受付中(まとめサイト掲載)"
+      ],
+      "link": "https://www.amazon.co.jp/dp/B0FLCWJ1VK?tag=pokekadagaya-22&linkCode=ogi&th=1&psc=1",
+      "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
+      "source_name": "ポケざんまい",
+      "first_seen": "2026-10-24T18:12:04+09:00"
+    },
+    "amazon|https://www.amazon.co.jp/dp/B0F9KJGGZ5": {
+      "key": "amazon|https://www.amazon.co.jp/dp/B0F9KJGGZ5",
+      "shop": "Amazon",
+      "product": "拡張パック 「インフェルノX」",
+      "kind": "招待リクエスト",
+      "details": [
+        "招待リクエスト受付中(まとめサイト掲載)"
+      ],
+      "link": "https://www.amazon.co.jp/dp/B0F9KJGGZ5?tag=pokekadagaya-22&linkCode=ogi&th=1&psc=1",
+      "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
+      "source_name": "ポケざんまい",
+      "first_seen": "2026-10-24T18:12:04+09:00"
+    },
+    "amazon|https://www.amazon.co.jp/dp/B0F18J2CJF": {
+      "key": "amazon|https://www.amazon.co.jp/dp/B0F18J2CJF",
+      "shop": "Amazon",
+      "product": "拡張パック 「メガブレイブ」",
+      "kind": "招待リクエスト",
+      "details": [
+        "招待リクエスト受付中(まとめサイト掲載)"
+      ],
+      "link": "https://www.amazon.co.jp/dp/B0F18J2CJF?tag=pokekadagaya-22&linkCode=ogi&th=1&psc=1",
+      "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
+      "source_name": "ポケざんまい",
+      "first_seen": "2026-10-24T18:12:04+09:00"
+    },
+    "amazon|https://www.amazon.co.jp/dp/B0F189YH8W": {
+      "key": "amazon|https://www.amazon.co.jp/dp/B0F189YH8W",
+      "shop": "Amazon",
+      "product": "拡張パック 「メガシンフォニア」",
+      "kind": "招待リクエスト",
+      "details": [
+        "招待リクエスト受付中(まとめサイト掲載)"
+      ],
+      "link": "https://www.amazon.co.jp/dp/B0F189YH8W?tag=pokekadagaya-22&linkCode=ogi&th=1&psc=1",
+      "source_url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
+      "source_name": "ポケざんまい",
+      "first_seen": "2026-10-24T18:12:04+09:00"
+    }
+  },
+  "articles": {
+    "https://premium.gamepedia.jp/pokeca/archives/25938": {
+      "title": "【ポケカ】ハドウシーカーの収録カードリストや抽選・予約情報まとめ(10月23日更新)｜20種判明【拡張パック】【BOX】【ポケモンカード】",
+      "url": "https://premium.gamepedia.jp/pokeca/archives/25938",
+      "source_name": "攻略大百科",
+      "first_seen": "2026-10-24T18:12:04+09:00"
+    },
+    "https://premium.gamepedia.jp/pokeca/archives/25871": {
+      "title": "【ポケカ】スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガーの収録カードと抽選・予約情報まとめ【ポケモンカード】",
+      "url": "https://premium.gamepedia.jp/pokeca/archives/25871",
+      "source_name": "攻略大百科",
+      "first_seen": "2026-10-24T18:12:04+09:00"
+    },
+    "https://www.pokeca-zanmai.jp/amazon-lottery/": {
+      "title": "Amazonのポケカ抽選【2026年10月最新】招待リクエスト受付中の商品一覧と応募方法",
+      "url": "https://www.pokeca-zanmai.jp/amazon-lottery/",
+      "source_name": "ポケざんまい",
+      "first_seen": "2026-10-24T18:12:04+09:00"
+    },
+    "https://www.pokeca-zanmai.jp/itoyokado/": {
+      "title": "イトーヨーカドーのポケカ抽選はネット通販と店舗で実施！応募条件や方法を解説",
+      "url": "https://www.pokeca-zanmai.jp/itoyokado/",
+      "source_name": "ポケざんまい",
+      "first_seen": "2026-10-24T18:12:04+09:00"
+    },
+    "https://www.pokeca-zanmai.jp/shimamura/": {
+      "title": "しまむらのポケカ抽選は応募券が5枚必要！条件・申し込み手順・結果の確認方法を解説",
+      "url": "https://www.pokeca-zanmai.jp/shimamura/",
+      "source_name": "ポケざんまい",
+      "first_seen": "2026-10-24T18:12:04+09:00"
+    },
+    "https://www.pokeca-zanmai.jp/rakuten/": {
+      "title": "【楽天ブックス】ポケカ抽選のやり方は？応募条件・結果の確認方法・注意点を解説！",
+      "url": "https://www.pokeca-zanmai.jp/rakuten/",
+      "source_name": "ポケざんまい",
+      "first_seen": "2026-10-24T18:12:04+09:00"
+    }
+  },
+  "runs": [
+    {
+      "at": "2026-10-24T18:12:04+09:00",
+      "found": 10,
+      "new": 10,
+      "errors": []
+    }
+  ]
+}
