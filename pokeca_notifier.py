@@ -280,7 +280,6 @@ def extract_from_article(article: dict, page_html: str, source_name: str) -> lis
             "details": info["lines"][:8],
             "link": info["link"],
             "release": release,
-        "seen": f"{item['first_seen'][:10].replace('-', '/')}(このツールで初めて確認した日)" if invite and not start and item.get("first_seen") else "",
             "source_url": article["url"],
             "source_name": source_name,
         })
@@ -430,6 +429,7 @@ def summarize(item: dict, now: dt.datetime) -> dict:
         "result": find_value(d, "結果発表", "当選発表"),
         "purchase": find_value(d, "購入期間", "支払") or ("当選メールが届いてから48〜72時間ほど(メールに記載)" if invite else ""),
         "release": release,
+        "seen": f"{item['first_seen'][:10].replace('-', '/')}(このツールで初めて確認した日)" if invite and not start and item.get("first_seen") else "",
         "delivery": find_value(d, "お届け", "発送"),
         "limit": find_value(d, "購入制限", "制限").lstrip("・"),
         "apply_url": item["link"] or DEFAULT_APPLY_URL[item["shop"]] or item["source_url"],
