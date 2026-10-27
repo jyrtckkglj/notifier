@@ -141,6 +141,26 @@
       "source_name": "ポケざんまい",
       "first_seen": "2026-10-24T18:12:04+09:00",
       "release": ""
+    },
+    "https://premium.gamepedia.jp/pokeca/archives/25938|Amazon|10/26": {
+      "key": "https://premium.gamepedia.jp/pokeca/archives/25938|Amazon|10/26",
+      "shop": "Amazon",
+      "product": "ハドウシーカー",
+      "kind": "抽選",
+      "details": [
+        "対象商品: ハドウシーカー",
+        "販売種別: 抽選",
+        "抽選開始日時: 10/26(月) 14:00",
+        "抽選終了日時: 不明",
+        "抽選結果発表: 当選発表日は人によって異なる【メール】",
+        "購入期間: 当選メール到着後48時間以内",
+        "購入制限等: ・1人1BOXまで"
+      ],
+      "link": "",
+      "release": "2026年11月27日(金)",
+      "source_url": "https://premium.gamepedia.jp/pokeca/archives/25938",
+      "source_name": "攻略大百科",
+      "first_seen": "2026-10-27T10:57:01+09:00"
     }
   },
   "articles": {
@@ -216,6 +236,12 @@
       "at": "2026-10-26T10:04:47+09:00",
       "found": 9,
       "new": 0,
+      "errors": []
+    },
+    {
+      "at": "2026-10-27T10:57:01+09:00",
+      "found": 10,
+      "new": 1,
       "errors": []
     }
   ]
