@@ -199,6 +199,12 @@
       "url": "https://www.pokeca-zanmai.jp/rakuten/",
       "source_name": "ポケざんまい",
       "first_seen": "2026-10-24T18:12:04+09:00"
+    },
+    "https://www.pokeca-zanmai.jp/famima/": {
+      "title": "ファミマオンラインのポケカ抽選はファミペイ会員＆メルマガ登録が条件！応募方法を解説",
+      "url": "https://www.pokeca-zanmai.jp/famima/",
+      "source_name": "ポケざんまい",
+      "first_seen": "2026-10-30T11:29:36+09:00"
     }
   },
   "runs": [
@@ -252,6 +258,12 @@
     },
     {
       "at": "2026-10-29T11:15:51+09:00",
+      "found": 10,
+      "new": 0,
+      "errors": []
+    },
+    {
+      "at": "2026-10-30T11:29:36+09:00",
       "found": 10,
       "new": 0,
       "errors": []
