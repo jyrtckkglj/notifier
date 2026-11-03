@@ -220,6 +220,12 @@
       "url": "https://www.pokeca-zanmai.jp/famima/",
       "source_name": "ポケざんまい",
       "first_seen": "2026-10-30T11:29:36+09:00"
+    },
+    "https://www.pokeca-zanmai.jp/lawson-hmv/": {
+      "title": "ローソン・HMVのポケカ抽選情報！販売方法の違いや応募条件・申し込み手順を解説",
+      "url": "https://www.pokeca-zanmai.jp/lawson-hmv/",
+      "source_name": "ポケざんまい",
+      "first_seen": "2026-11-03T12:52:59+09:00"
     }
   },
   "runs": [
@@ -297,6 +303,12 @@
     },
     {
       "at": "2026-11-02T11:16:28+09:00",
+      "found": 11,
+      "new": 0,
+      "errors": []
+    },
+    {
+      "at": "2026-11-03T12:52:59+09:00",
       "found": 11,
       "new": 0,
       "errors": []
