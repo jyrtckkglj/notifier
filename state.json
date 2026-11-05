@@ -226,6 +226,12 @@
       "url": "https://www.pokeca-zanmai.jp/lawson-hmv/",
       "source_name": "ポケざんまい",
       "first_seen": "2026-11-03T12:52:59+09:00"
+    },
+    "https://www.pokeca-zanmai.jp/nojima/": {
+      "title": "ノジマオンラインのポケモンカード抽選はシークレット販売会！やり方と当選しやすいコツを解説",
+      "url": "https://www.pokeca-zanmai.jp/nojima/",
+      "source_name": "ポケざんまい",
+      "first_seen": "2026-11-05T12:22:32+09:00"
     }
   },
   "runs": [
@@ -315,6 +321,12 @@
     },
     {
       "at": "2026-11-04T11:58:00+09:00",
+      "found": 11,
+      "new": 0,
+      "errors": []
+    },
+    {
+      "at": "2026-11-05T12:22:32+09:00",
       "found": 11,
       "new": 0,
       "errors": []
